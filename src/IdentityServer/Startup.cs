@@ -3,8 +3,6 @@
 
 
 using IdentityServer4;
-using IdentityServer.Data;
-using IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +14,9 @@ using IdentityServer4.EntityFramework.DbContexts;
 using System.Linq;
 using IdentityServer4.EntityFramework.Mappers;
 using System.Reflection;
+using OnlineShop.Library.Data;
+using OnlineShop.Library.UserManagmentService.Models;
+using OnlineShop.Library.Constants;
 
 namespace IdentityServer
 {
@@ -35,13 +36,13 @@ namespace IdentityServer
             services.AddControllersWithViews();
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            var identityConnectingString = Configuration.GetConnectionString("IdentityServerConnection");
+            var identityConnectingString = Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<UsersDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(ConnectionNames.UserConnection)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<UsersDbContext>()
                 .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(
