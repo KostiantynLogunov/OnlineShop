@@ -17,6 +17,7 @@ using System.Reflection;
 using OnlineShop.Library.Data;
 using OnlineShop.Library.UserManagmentService.Models;
 using OnlineShop.Library.Constants;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace IdentityServer
 {
@@ -45,8 +46,7 @@ namespace IdentityServer
                 .AddEntityFrameworkStores<UsersDbContext>()
                 .AddDefaultTokenProviders();
 
-            var builder = services.AddIdentityServer(
-                /*options =>
+            var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
@@ -55,30 +55,28 @@ namespace IdentityServer
 
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
-            }*/
-                )
-                .AddConfigurationStore(options =>
-                {
-                    options.ConfigureDbContext = b => b.UseSqlServer(identityConnectingString,
-                        sql =>
-                        {
-                            sql.MigrationsAssembly(migrationsAssembly);
-                            //sql.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                        });
-                    //.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
-                })
-                .AddOperationalStore(options =>
-                {
-                    options.ConfigureDbContext = b => b.UseSqlServer(identityConnectingString,
-                        //Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection),
-                        sql =>
-                        {
-                            sql.MigrationsAssembly(migrationsAssembly);
-                            //sql.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                        });
-                   // .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
-                })
-                .AddAspNetIdentity<ApplicationUser>();
+            })
+               .AddConfigurationStore(options =>
+               {
+                   options.ConfigureDbContext = b => b.UseSqlServer(
+                       Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection),
+                       sql => {
+                           sql.MigrationsAssembly(migrationsAssembly);
+                           sql.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                       })
+                   .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
+               })
+               .AddOperationalStore(options =>
+               {
+                   options.ConfigureDbContext = b => b.UseSqlServer(
+                       Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection),
+                       sql => {
+                           sql.MigrationsAssembly(migrationsAssembly);
+                           sql.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                       })
+                   .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.RowLimitingOperationWithoutOrderByWarning));
+               })
+               .AddAspNetIdentity<ApplicationUser>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
