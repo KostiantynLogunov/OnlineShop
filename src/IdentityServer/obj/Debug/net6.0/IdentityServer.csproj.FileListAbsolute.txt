@@ -107,3 +107,10 @@ D:\Development\NET\OnlineShop\src\IdentityServer\obj\Debug\net6.0\IdentityServer
 D:\Development\NET\OnlineShop\src\IdentityServer\obj\Debug\net6.0\ref\IdentityServer.dll
 D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\OnlineShop.Library.dll
 D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\OnlineShop.Library.pdb
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Development\NET\OnlineShop\src\IdentityServer\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

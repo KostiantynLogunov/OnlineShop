@@ -4,5 +4,6 @@
     {
         public static string UserConnection = "UserConnection";
         public static string IdentityServerConnection = "IdentityServerConnection";
+        public static string OrdersConnection = "OrdersConnection";
     }
 }
