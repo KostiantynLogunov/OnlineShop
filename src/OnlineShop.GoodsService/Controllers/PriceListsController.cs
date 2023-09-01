@@ -8,7 +8,7 @@ namespace OnlineShop.GoodsService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    //[Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class PriceListsController : RepoControllerBase<PriceList>
     {
         public PriceListsController(IRepo<PriceList> priceListsRepo, ILogger<PriceListsController> logger) : base(priceListsRepo, logger)

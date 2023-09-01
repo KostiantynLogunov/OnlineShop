@@ -8,7 +8,7 @@ namespace OnlineShop.OrdersService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    //[Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class OrdersController : RepoControllerBase<Order>
     {
         public OrdersController(IRepo<Order> ordersRepo, ILogger<OrdersController> logger) : base(ordersRepo, logger)

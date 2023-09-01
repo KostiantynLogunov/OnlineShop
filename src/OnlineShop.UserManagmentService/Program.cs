@@ -8,7 +8,7 @@ using OnlineShop.Library.UserManagmentService.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UsersDbContext>(options =>
-               options.UseSqlServer(builder.Configuration.GetConnectionString(ConnectionNames.UserConnection)));
+               options.UseSqlServer(builder.Configuration.GetConnectionString(ConnectionNames.UsersConnection)));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<UsersDbContext>()

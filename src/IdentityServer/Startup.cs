@@ -40,7 +40,7 @@ namespace IdentityServer
             var identityConnectingString = Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection);
 
             services.AddDbContext<UsersDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(ConnectionNames.UserConnection)));
+                options.UseSqlServer(Configuration.GetConnectionString(ConnectionNames.UsersConnection)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<UsersDbContext>()

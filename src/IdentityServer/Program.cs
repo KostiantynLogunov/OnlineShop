@@ -50,7 +50,7 @@ namespace IdentityServer
                 {
                     Log.Information("Seeding database...");
                     var config = host.Services.GetRequiredService<IConfiguration>();
-                    var connectionString = config.GetConnectionString(ConnectionNames.UserConnection);
+                    var connectionString = config.GetConnectionString(ConnectionNames.UsersConnection);
                     SeedData.EnsureSeedData(connectionString);
                     Log.Information("Done seeding database.");
                     return 0;
